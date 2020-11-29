@@ -64,12 +64,16 @@ async function renewNoip(loginUrl) {
 
 
 (async () => {
-    var job = new CronJob('0 33 0 * * *', async function () {
-        console.log('job is started, checking if a renew is available');
-        await renewNoip(loginUrl);
-    }, null, true, 'Europe/Stockholm');
-    job.start();
-    //process.exit(1);
+    try {
+        var job = new CronJob('01 01 0 * * *', async function () {
+            console.log('job is started, checking if a renew is available');
+            await renewNoip(loginUrl);
+        }, null, true, 'Europe/Stockholm');
+        job.start();
+        //process.exit(1);
+    } catch (e) {
+        console.error(e);
+    }
 
 })
 
