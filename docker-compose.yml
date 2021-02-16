@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  renewnoip:
+    image: renewnoip
+    container_name: renewnoip
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      - NODE_ENV="production"
+      - USERNAME=""
+      - USERPASS=""
+      - STARTTIME="01 01 00 * * *"
+        #cronjob, sec, min, hour, date, month, day of week  check out https://www.npmjs.com/package/cron
